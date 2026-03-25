@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /validator-node/
+Sitemap: https://validator-node.github.io/sitemap.xml
