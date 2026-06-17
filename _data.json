@@ -1,0 +1,107 @@
+{
+ "keyword": "validator node",
+ "h1": "Validator Node",
+ "brand": "Validator Node",
+ "niche": "swap",
+ "verb": "Swap",
+ "title": "Validator Node - Open App",
+ "meta_description": "validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap.",
+ "palette": {
+  "mode": "light",
+  "bg": "#FFFFFF",
+  "accent": "#FF007A",
+  "ink": "#191B1F"
+ },
+ "hero_h2": "Swap into liquid staking routes with domain-first checks",
+ "hero_lead": "validator node research often leads to either solo Ethereum staking or liquid staking tokens, so this route keeps the workflow focused on official docs, token selection, and the Uniswap app before any wallet signature.",
+ "badge": "Ethereum",
+ "widget": {
+  "from": "ETH",
+  "from_net": "Ethereum",
+  "to": "LST",
+  "to_net": "Ethereum",
+  "action": "Open Uniswap App"
+ },
+ "trust": [
+  "Official Uniswap web app",
+  "Ethereum staking docs",
+  "Self-custody wallet flow"
+ ],
+ "what_is": "Validator Node is an app-first route for users comparing validator-operation intent with liquid-staking token access. <a href='https://ethereum.org/staking/'>Ethereum staking docs</a> explain the 32 ETH solo-validator path and the tradeoffs around pooled staking.",
+ "how": [
+  {
+   "t": "Check staking intent",
+   "d": "Decide whether you want to run infrastructure, use pooled staking, or simply swap for a liquid staking token."
+  },
+  {
+   "t": "Review the source",
+   "d": "Read Ethereum's staking docs and the Launchpad before moving ETH or generating validator keys."
+  },
+  {
+   "t": "Open the app",
+   "d": "Use the official Uniswap domain for swap execution; confirm network, token contract, and wallet prompts."
+  },
+  {
+   "t": "Sign deliberately",
+   "d": "Approve only the token and amount you expect, then keep transaction records for tax and risk review."
+  }
+ ],
+ "points": [
+  {
+   "h": "Infrastructure is different",
+   "p": "Running a validator means software, uptime, keys, and protocol penalties; it is not the same as a simple token swap."
+  },
+  {
+   "h": "Liquid staking stays DeFi-native",
+   "p": "LSTs can provide staking exposure while remaining transferable, but they add smart-contract, liquidity, and peg risk."
+  },
+  {
+   "h": "Use official sources",
+   "p": "Before connecting, compare the app URL with <a href='https://developers.uniswap.org/docs'>Uniswap docs</a> and Ethereum resources."
+  }
+ ],
+ "eeat": [
+  {
+   "text": "Ethereum staking",
+   "url": "https://ethereum.org/staking/"
+  },
+  {
+   "text": "Ethereum Staking Launchpad",
+   "url": "https://launchpad.ethereum.org/"
+  },
+  {
+   "text": "Uniswap documentation",
+   "url": "https://developers.uniswap.org/docs"
+  }
+ ],
+ "faq": [
+  {
+   "q": "What is a validator node?",
+   "a": "A validator node usually refers to staking infrastructure that helps a proof-of-stake network verify blocks and maintain consensus; on Ethereum, solo activation is tied to a 32 ETH validator deposit.",
+   "open": true
+  },
+  {
+   "q": "Is validator node a swap app?",
+   "a": "No. The phrase describes staking infrastructure, while this page routes swap intent to the official Uniswap app and staking research to Ethereum sources.",
+   "open": false
+  },
+  {
+   "q": "Do I need 32 ETH for a validator node?",
+   "a": "For solo Ethereum validator activation, Ethereum docs describe a 32 ETH deposit; pooled staking options can have lower minimums but are third-party and carry distinct risks.",
+   "open": false
+  },
+  {
+   "q": "Can I swap instead of running a validator node?",
+   "a": "You can swap for liquid staking tokens through a DEX, but that is different from operating a validator and adds token, contract, and liquidity risk.",
+   "open": false
+  },
+  {
+   "q": "How do I avoid a fake validator node page?",
+   "a": "Use bookmarked official domains, verify URLs, and never enter seed phrases; app connections should happen only on the intended official app.",
+   "open": false
+  }
+ ],
+ "official_url": "https://app.uniswap.org/",
+ "official_domain": "app.uniswap.org",
+ "footer_note": "This page is not the official app; verify app.uniswap.org before connecting a wallet; educational only, not financial advice."
+}
