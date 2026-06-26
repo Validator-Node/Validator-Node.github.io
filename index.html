@@ -3,86 +3,357 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Validator Node</title>
-  <meta name="description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
+  <title>Validator Node - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for Validator Node DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://validator-node.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F7F3EC">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Validator Node">
-  <meta property="og:description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
-  <meta property="og:url" content="https://validator-node.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Validator Node">
-  <meta name="twitter:description" content="Validator Node lets you run your own Ethereum validator so you keep full control of your keys and rewards.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://validator-node.github.io/#website",
-        "url": "https://validator-node.github.io/",
-        "name": "Validator Node",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://validator-node.github.io/#app",
-        "name": "Validator Node",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://validator-node.github.io/"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://validator-node.github.io/#organization",
-        "name": "Validator Node",
-        "url": "https://validator-node.github.io/"
-      }
-    ]
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root {
+  --bg: #f7f3ec;
+  --bg-soft: #fbf8f2;
+  --surface: #fffdf8;
+  --surface-2: #f4efe6;
+  --ink: #171717;
+  --muted: #67615a;
+  --faint: #9b948b;
+  --line: rgba(23, 23, 23, .10);
+  --line-strong: rgba(23, 23, 23, .16);
+  --accent: #627EEA;
+  --accent-soft: rgba(98, 126, 234, .12);
+  --shadow: 0 26px 70px -38px rgba(36, 31, 24, .45);
+  --max: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% -12%, rgba(98, 126, 234, .14), transparent 42%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+.topbar {
+  width: min(var(--max), calc(100% - 40px));
+  height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: 10px;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: .92rem;
+  font-weight: 540;
+  transition: color .16s ease;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 17px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255, 253, 248, .58);
+  font-size: .9rem;
+  font-weight: 680;
+  box-shadow: 0 12px 28px -24px rgba(23, 23, 23, .35);
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.ghost:hover {
+  transform: translateY(-1px);
+  border-color: rgba(98, 126, 234, .36);
+  background: var(--surface);
+}
+
+.stage {
+  height: calc(100dvh - 124px);
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.hero {
+  display: grid;
+  justify-items: center;
+  gap: 15px;
+}
+
+h1 {
+  max-width: 11ch;
+  font-size: clamp(3rem, 7vw, 5.35rem);
+  line-height: .96;
+  font-weight: 820;
+  letter-spacing: 0;
+}
+
+.sub {
+  max-width: 55ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-weight: 460;
+}
+
+.sub strong {
+  color: var(--ink);
+  font-weight: 760;
+  box-shadow: inset 0 -.45em 0 var(--accent-soft);
+}
+
+.app-card {
+  width: min(430px, 100%);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 253, 248, .98), rgba(255, 253, 248, .90));
+  box-shadow: var(--shadow);
+}
+
+.validator {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-2);
+  text-align: left;
+}
+
+.coin {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(98, 126, 234, .22);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.coin img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.validator-label {
+  font-size: 1.04rem;
+  font-weight: 780;
+  color: var(--ink);
+}
+
+.validator-note {
+  margin-top: 3px;
+  color: var(--faint);
+  font-size: .92rem;
+  font-weight: 520;
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin-top: 14px;
+  border-radius: 15px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.02rem;
+  font-weight: 800;
+  box-shadow: 0 18px 32px -24px rgba(98, 126, 234, .95);
+  transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.primary:hover {
+  transform: translateY(-1px);
+  background: var(--accent);
+  box-shadow: 0 22px 38px -24px rgba(98, 126, 234, 1);
+}
+
+.foot {
+  width: min(var(--max), calc(100% - 40px));
+  height: 52px;
+  margin: 0 auto;
+  color: var(--faint);
+  font-size: .84rem;
+  font-weight: 560;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    width: min(100% - 28px, var(--max));
+    height: 66px;
+    gap: 12px;
   }
-  </script>
+
+  .brand {
+    font-size: .95rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .ghost {
+    min-height: 36px;
+    padding: 0 14px;
+    font-size: .86rem;
+  }
+
+  .stage {
+    width: min(100% - 28px, var(--max));
+    height: calc(100dvh - 112px);
+    gap: 24px;
+  }
+
+  h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 11vw, 3.15rem);
+  }
+
+  .sub {
+    max-width: 34ch;
+    font-size: .98rem;
+  }
+
+  .app-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .validator {
+    padding: 14px;
+  }
+
+  .foot {
+    width: min(100% - 28px, var(--max));
+    height: 46px;
+    font-size: .8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand span {
+    max-width: 118px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ghost {
+    padding: 0 12px;
+  }
+
+  .validator-label {
+    font-size: .98rem;
+  }
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="Validator Node home">
-      <img src="favicon.png" width="28" height="28" alt="">
+    <div class="brand">
+      <img src="favicon.png" width="30" height="30" alt="">
       <span>Validator Node</span>
-    </a>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://ethereum.org/staking/solo/" target="_blank" rel="nofollow noopener noreferrer">Ethereum guide</a>
-      <a href="https://etherscan.io/" target="_blank" rel="nofollow noopener noreferrer">Etherscan</a>
-      <a href="https://www.coingecko.com/en/coins/ethereum" target="_blank" rel="nofollow noopener noreferrer">ETH market</a>
-    </nav>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">Validator Node</h1>
-      <p class="sub"><strong>Validator Node</strong> lets you run your own Ethereum validator so you keep full control of your keys and rewards.</p>
-    </section>
-
-    <section class="app-card" aria-label="Validator node app">
-      <div class="validator">
-        <span class="coin">
-          <img src="eth.png" width="38" height="38" alt="ETH">
-        </span>
-        <div>
-          <p class="validator-label">Run your own validator</p>
-          <p class="validator-note">Setup steps in app</p>
-        </div>
-      </div>
-      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">Validator Node</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot">Validator Node &mdash; 2026</footer>
+  <footer class="footer">Validator Node &mdash; 2026</footer>
 </body>
 </html>
